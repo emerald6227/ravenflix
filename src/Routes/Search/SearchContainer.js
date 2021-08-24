@@ -6,20 +6,28 @@ export default class extends React.Component {
     state = {
         movieResults: null,
         tvResults: null,
-        searchTerm: "code",
+        searchTerm: "",
+        finallyTerm: "",
         error: null,
         loading: false
     };
 
-    componentDidMount() {
-        this.handleSubmit();
-    }
-
-    handleSubmit = () => {
+    handleSubmit = (event) => {
+        event.preventDefault();
         const { searchTerm } = this.state;
         if (searchTerm !== "") {
             this.searchByTerm();
+            this.setState({
+                finallyTerm: searchTerm
+            });
         }
+    };
+
+    handleUpdateTerm = (event) => {
+        const { target: { value } } = event;
+        this.setState({
+            searchTerm: value
+        })
     };
 
     searchByTerm = async () => {
@@ -38,7 +46,7 @@ export default class extends React.Component {
             });
         } catch {
             this.setState({
-                error: "영화 정보를 찾을 수 없습니다."
+                error: "검색 결과가 없습니다."
             })
         } finally {
             this.setState({
@@ -48,10 +56,10 @@ export default class extends React.Component {
     };
 
     render() {
-        const { movieResults, tvResults, searchTerm, error, loading } = this.state;
-        console.log("search상태", this.state);
+        const { movieResults, tvResults, searchTerm, finallyTerm, error, loading } = this.state;
+        // console.log("search상태", this.state);
         return (
-            <SearchPresenter movieResults={movieResults} tvResults={tvResults} searchTerm={searchTerm} error={error} loading={loading} />
+            <SearchPresenter movieResults={movieResults} tvResults={tvResults} searchTerm={searchTerm} finallyTerm={finallyTerm} handleSubmit={this.handleSubmit} handleUpdateTerm={this.handleUpdateTerm} error={error} loading={loading} />
         );
     }
 }

@@ -6,9 +6,7 @@ const Container = styled.div`
     :not(:last-child) {
         margin-bottom: 50px;
     }
-    :first-child {
-        margin-top: 50px;
-    }
+    margin-top: 30px;
 `;
 
 const Title = styled.span`
@@ -32,7 +30,7 @@ const Section = ({title, children}) => {
     )
 };
 
-Section.protoTypes = {
+Section.propTypes = {
     title: PropTypes.string.isRequired,
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),
