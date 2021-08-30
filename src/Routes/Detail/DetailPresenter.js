@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Helmet from "react-helmet"
 import Loader from "../../Components/Loader";
-// import Message from "../../Components/Message";
+import Message from "../../Components/Message";
 
 const Container = styled.div`
     height: calc(100vh - 50px);
@@ -47,9 +48,31 @@ const Data = styled.div`
     margin-left: 10px;
 `;
 
+const TitleContainer = styled.div`
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+`;
+
 const Title = styled.h3`
     font-size: 32px;
-    margin-bottom: 20px;
+    margin-right: 15px;
+`;
+
+const HomepageA = styled.a`
+    all: unset;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 30px;
+    background-color: orange;
+    border-radius: 10px;
+    cursor: pointer;
+    color: black;
+    font-weight: 700;
+    font-size: 16px;
 `;
 
 const ItemContainer = styled.div`
@@ -71,17 +94,31 @@ const OverView = styled.p`
 
 const DetailPresenter = ({result, error, loading}) => {
     return (
-        loading ? <Loader/> : (
-            <Container>
+        loading ? (
+            <>
+                <Helmet>
+                    <title>Loading | Ravenflix</title>
+                </Helmet>
+                <Loader/>
+            </>
+        ) : (
+            error ? <Message /> : 
+                <Container>
+                <Helmet>
+                    <title>{result.original_title ? result.original_title : result.original_name} | Ravenflix</title>
+                </Helmet>
                 <Backdrop bgImage={result.backdrop_path ? `https://image.tmdb.org/t/p/original${result.backdrop_path}` : ""} />
                 <Content>
                     <Cover bgImage={result.poster_path ? `https://image.tmdb.org/t/p/original${result.poster_path}` : require("../../assets/noPosterSmall.png").default} />
                     <Data>
-                        <Title>{result.original_title ? result.original_title : result.original_name}</Title>
+                        <TitleContainer>
+                            <Title>{result.original_title ? result.original_title : result.original_name}</Title>
+                            {result.imdb_id ? <HomepageA href={`https://imdb.com/title/${result.imdb_id}`} target="_blank">IMDB</HomepageA> : <HomepageA href={result.homepage} target="_blank">Official</HomepageA> }
+                        </TitleContainer>
                         <ItemContainer>
                             <Item>{result.release_date ? result.release_date.substring(0, 4) : result.first_air_date.substring(0, 4)}</Item>
                             <Divider>∙</Divider>
-                            <Item>{result.runtime ? result.runtime : result.episode_run_time[0]}min</Item>
+                            <Item>{result.runtime || result.runtime === 0 ? result.runtime : result.episode_run_time[0]}min</Item>
                             <Divider>∙</Divider>
                             <Item>{result.genres && result.genres.map((genre, index) => index === (result.genres.length - 1) ? genre.name : `${genre.name} / `)}</Item>
                         </ItemContainer>
