@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.js": "/github.io/ravenflix/static/js/main.a7ee934d.chunk.js",
+    "main.js.map": "/github.io/ravenflix/static/js/main.a7ee934d.chunk.js.map",
+    "runtime-main.js": "/github.io/ravenflix/static/js/runtime-main.6ce8c913.js",
+    "runtime-main.js.map": "/github.io/ravenflix/static/js/runtime-main.6ce8c913.js.map",
+    "static/js/2.67af418f.chunk.js": "/github.io/ravenflix/static/js/2.67af418f.chunk.js",
+    "static/js/2.67af418f.chunk.js.map": "/github.io/ravenflix/static/js/2.67af418f.chunk.js.map",
+    "index.html": "/github.io/ravenflix/index.html",
+    "static/js/2.67af418f.chunk.js.LICENSE.txt": "/github.io/ravenflix/static/js/2.67af418f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6ce8c913.js",
+    "static/js/2.67af418f.chunk.js",
+    "static/js/main.a7ee934d.chunk.js"
+  ]
+}
