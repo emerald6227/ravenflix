@@ -22,7 +22,7 @@ const TVPresenter = ({topRated, popular, airingToday, error, loading}) => {
         ) : (
             <Container>
                 { topRated && topRated.length > 0 && (
-                    <Section title="TopRated Shows">
+                    <Section title="Top TV">
                         {topRated.map(show => (
                             <Poster 
                                 key={show.id} 
@@ -37,7 +37,7 @@ const TVPresenter = ({topRated, popular, airingToday, error, loading}) => {
                     </Section>
                 )}
                 { popular && popular.length > 0 && (
-                    <Section title="Popular Shows">
+                    <Section title="인기있는 TV">
                         {popular.map(show => (
                             <Poster 
                                 key={show.id} 
@@ -52,7 +52,7 @@ const TVPresenter = ({topRated, popular, airingToday, error, loading}) => {
                     </Section>
                 )}
                 { airingToday && airingToday.length > 0 && (
-                    <Section title="AiringToday Shows">
+                    <Section title="오늘 방영하는 TV">
                         {airingToday.map(show => (
                             <Poster 
                                 key={show.id} 

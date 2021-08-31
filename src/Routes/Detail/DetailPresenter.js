@@ -1,5 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Route, Link, withRouter } from 'react-router-dom';
+import DetailVideos from "../DetailVideos";
+import DetailMaker from "../DetailMaker";
+import DetailSeasons from "../DetailSeasons";
 import styled from "styled-components";
 import Helmet from "react-helmet"
 import Loader from "../../Components/Loader";
@@ -43,12 +47,19 @@ const Cover = styled.div`
     border-radius: 5px;
 `;
 
-const Data = styled.div`
+const InfoContainer = styled.div`
+    display: flex;
+    flex-direction: column;
     width: 70%;
+    padding-left: 20px;
+`;
+
+const PrimaryInfoContainer = styled.div`
+    height: 40%;
     margin-left: 10px;
 `;
 
-const TitleContainer = styled.div`
+const TitleWrapper = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
@@ -75,24 +86,53 @@ const HomepageA = styled.a`
     font-size: 16px;
 `;
 
-const ItemContainer = styled.div`
+const ItemWrapper = styled.div`
     margin: 20px 0;
 `;
 
-const Item = styled.span``;
+const Item = styled.span`
+    font-size: 15px;
+`;
 
 const Divider = styled.span`
     margin: 0 5px;
 `;
 
 const OverView = styled.p`
-    font-size: 16px;
+    font-size: 18px;
     opacity: 0.7;
     line-height: 1.5;
-    width: 50%;
 `;
 
-const DetailPresenter = ({result, error, loading}) => {
+// menu
+const InsideMenu = styled.div`
+    margin-left: 10px;
+    height: 60%;
+`;
+
+const InsideMenuNav = styled.div`
+    display: flex;
+    margin-top: 20px;
+`;
+
+const InsideMenuNavBtn = styled(Link)`
+    all: unset;
+    width: 33%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${(props) => (props.selected ? "#811005" : "rgba(0, 0, 0, 0.5)")};
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 5px;
+    border-radius: 10px;
+`;
+
+const InsideMenuContent = styled.div``;
+
+const DetailPresenter = withRouter(({ location: { pathname }, result, error, loading}) => {
     return (
         loading ? (
             <>
@@ -104,31 +144,55 @@ const DetailPresenter = ({result, error, loading}) => {
         ) : (
             error ? <Message /> : 
                 <Container>
-                <Helmet>
-                    <title>{result.original_title ? result.original_title : result.original_name} | Ravenflix</title>
-                </Helmet>
-                <Backdrop bgImage={result.backdrop_path ? `https://image.tmdb.org/t/p/original${result.backdrop_path}` : ""} />
-                <Content>
-                    <Cover bgImage={result.poster_path ? `https://image.tmdb.org/t/p/original${result.poster_path}` : require("../../assets/noPosterSmall.png").default} />
-                    <Data>
-                        <TitleContainer>
-                            <Title>{result.original_title ? result.original_title : result.original_name}</Title>
-                            {result.imdb_id ? <HomepageA href={`https://imdb.com/title/${result.imdb_id}`} target="_blank">IMDB</HomepageA> : <HomepageA href={result.homepage} target="_blank">Official</HomepageA> }
-                        </TitleContainer>
-                        <ItemContainer>
-                            <Item>{result.release_date ? result.release_date.substring(0, 4) : result.first_air_date.substring(0, 4)}</Item>
-                            <Divider>∙</Divider>
-                            <Item>{result.runtime || result.runtime === 0 ? result.runtime : result.episode_run_time[0]}min</Item>
-                            <Divider>∙</Divider>
-                            <Item>{result.genres && result.genres.map((genre, index) => index === (result.genres.length - 1) ? genre.name : `${genre.name} / `)}</Item>
-                        </ItemContainer>
-                        <OverView>{result.overview}</OverView>
-                    </Data>
-                </Content>
-            </Container>
+                    <Helmet>
+                        <title>{result.original_title ? result.original_title : result.original_name} | Ravenflix</title>
+                    </Helmet>
+                    <Backdrop bgImage={result.backdrop_path ? `https://image.tmdb.org/t/p/original${result.backdrop_path}` : ""} />
+                    <Content>
+                        <Cover bgImage={result.poster_path ? `https://image.tmdb.org/t/p/original${result.poster_path}` : require("../../assets/noPosterSmall.png").default} />
+                        <InfoContainer>
+                            <PrimaryInfoContainer>
+                                <TitleWrapper>
+                                    <Title>{result.original_title ? result.original_title : result.original_name}</Title>
+                                    {result.imdb_id ? <HomepageA href={`https://imdb.com/title/${result.imdb_id}`} target="_blank">IMDB</HomepageA> : <HomepageA href={result.homepage} target="_blank">Official</HomepageA> }
+                                </TitleWrapper>
+                                <ItemWrapper>
+                                    <Item>{result.release_date ? result.release_date.substring(0, 4) : result.first_air_date.substring(0, 4)}</Item>
+                                    <Divider>∙</Divider>
+                                    <Item>{result.runtime || result.runtime === 0 ? result.runtime : result.episode_run_time[0]}min</Item>
+                                    <Divider>∙</Divider>
+                                    <Item>{result.genres && result.genres.map((genre, index) => index === (result.genres.length - 1) ? genre.name : `${genre.name} / `)}</Item>
+                                </ItemWrapper>
+                                <OverView>{result.overview}</OverView>
+                            </PrimaryInfoContainer>
+
+                            <InsideMenu>
+                                <InsideMenuNav>
+                                    {pathname.includes("/movie/") ? 
+                                        <>
+                                            <InsideMenuNavBtn to={`/movie/${result.id}/videos`} selected={pathname.includes("movie") && pathname.includes("videos")}>Videos</InsideMenuNavBtn>
+                                            <InsideMenuNavBtn to={`/movie/${result.id}/maker`} selected={pathname.includes("movie") && pathname.includes("maker")}>Maker</InsideMenuNavBtn>
+                                        </>
+                                        :
+                                        <>
+                                            <InsideMenuNavBtn to={`/show/${result.id}/videos`} selected={pathname.includes("show") && pathname.includes("videos")}>Videos</InsideMenuNavBtn>
+                                            <InsideMenuNavBtn to={`/show/${result.id}/maker`} selected={pathname.includes("show") && pathname.includes("maker")}>Maker</InsideMenuNavBtn>
+                                            <InsideMenuNavBtn to={`/show/${result.id}/seasons`} selected={pathname.includes("show") && pathname.includes("seasons")}>Seasons</InsideMenuNavBtn>
+                                        </>
+                                    }
+                                </InsideMenuNav>
+                                <Route path="/movie/:id/videos" component={DetailVideos}></Route>
+                                <Route path="/movie/:id/maker" component={DetailMaker}></Route>
+                                <Route path="/show/:id/videos" component={DetailVideos}></Route>
+                                <Route path="/show/:id/maker" component={DetailMaker}></Route>
+                                <Route path="/show/:id/seasons" component={DetailSeasons}></Route>
+                            </InsideMenu>
+                        </InfoContainer>
+                    </Content>
+                </Container>
         )
     )
-};
+});
 
 DetailPresenter.propTypes = {
     result: PropTypes.object,

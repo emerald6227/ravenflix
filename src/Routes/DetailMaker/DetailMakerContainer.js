@@ -1,19 +1,19 @@
 import React from "react";
 import { moviesApi, tvApi } from '../../api';
-import DetailPresenter from "./DetailPresenter";
+import DetailMakerPresenter from "./DetailMakerPresenter";
 
-export default class extends React.Component {
+class DetailMaker extends React.Component {
     constructor(props) {
         super(props);
         const { location: { pathname }} = props;
         this.state = {
-            result: null,
+            productionCompanies: null,
+            productionCountries: null,
             error: null,
             loading: true,
             isMovie: pathname.includes("/movie/")
         };
     };
-
 
     async componentDidMount() {
         const { 
@@ -44,15 +44,18 @@ export default class extends React.Component {
         } finally {
             this.setState({
                 loading: false,
-                result
+                productionCompanies: result.production_companies,
+                productionCountries: result.production_countries
             })
         }
     };
 
     render() {
-        const { result, error, loading } = this.state;
+        const { productionCompanies, productionCountries, loading, error } = this.state;
         return (
-            <DetailPresenter result={result} error={error} loading={loading} />
-        );
+            <DetailMakerPresenter productionCompanies={productionCompanies} productionCountries={productionCountries} loading={loading} error={error}></DetailMakerPresenter>
+        )
     }
-}
+};
+
+export default DetailMaker;

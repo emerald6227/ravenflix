@@ -40,11 +40,13 @@ const ImageContainer = styled.div`
 const Title = styled.span`
     display: block;
     margin-bottom: 3px;
+    font-size: 16px;
 `;
 
 const Year = styled.span`
     font-size: 10px;
     color: rgba(255, 255, 255, 0.5);
+    font-size: 13px;
 `;
 
 const Poster = ({id, imageUrl, title, rating, year, isMovie = false}) => {

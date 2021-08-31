@@ -17,6 +17,13 @@ const Header = styled.header`
     box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.8);
 `;
 
+const HomeTitle = styled.span`
+    display: inline-block;
+    margin: 0 20px;
+    font-size: 20px;
+    color: red;
+`;
+
 const List = styled.ul`
     display: flex;
 `;
@@ -25,7 +32,7 @@ const Item = styled.li`
     width: 80px;
     height: 50px;
     text-align: center;
-    border-bottom: 3px solid ${(props) => (props.current ? "#3498db" : "transparent")};
+    border-bottom: 3px solid ${(props) => (props.current ? "red" : "transparent")};
     transition: border-bottom .2s ease-out;
 `;
 
@@ -34,11 +41,15 @@ const SLink = styled(Link)`
     display: flex;
     align-items: center; 
     justify-content: center;
+    font-size: 16px;
 `;
 
 const header = ({location: {pathname}}) => {
     return (
         <Header>
+                <SLink to="/">
+                    <HomeTitle>Ravenflix</HomeTitle>
+                </SLink>
                 <List>
                     <Item current={pathname === "/"}>
                         <SLink to="/">Movies</SLink>
