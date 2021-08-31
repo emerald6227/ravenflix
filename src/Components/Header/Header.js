@@ -1,7 +1,6 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import styled from 'styled-components';
-// import styles from "./Header.module.css";
 
 const Header = styled.header`
     color: white;
@@ -21,6 +20,7 @@ const HomeTitle = styled.span`
     display: inline-block;
     margin: 0 20px;
     font-size: 20px;
+    font-weight: 700;
     color: red;
 `;
 
