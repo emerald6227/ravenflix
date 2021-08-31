@@ -128,6 +128,10 @@ const InsideMenuNavBtn = styled(Link)`
     font-size: 16px;
     margin-right: 5px;
     border-radius: 10px;
+
+    :hover {
+        background-color: ${(props) => (!props.selected ? "rgba(129,16,5, 0.7)" : "#811005")};
+    }
 `;
 
 const InsideMenuContent = styled.div``;
