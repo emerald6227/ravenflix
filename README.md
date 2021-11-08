@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Ravenflix - Netflix Clone Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Ravenflix
 
-## Available Scripts
+- Link:​ https://wizardly-jennings-388f18.netlify.app/#/
+  <br/>
 
-In the project directory, you can run:
+## 😺 프로젝트 소개 😺
 
-### `npm start`
+- Ravenflix는 2021.08.17 ~ 2021.09.01 (약 3주)의 기간동안 넷플릭스를 클론코딩한 프로젝트입니다.(조금 다른 UI를 가졌지만 영화 정보를 보여주는 웹 사이트입니다) 해당 프로젝트를 시작하기 전에 미리 2~3주 정도 리액트에 대해서 공부하고 진행해서 3주 안에 프로젝트를 끝낼 수 있었습니다.
+  <br/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🖥 Ravenflix 이용방법 🖥
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. Movies : 상영중인 영화, 개봉 예정 영화, 인기 있는 영화 정보를 볼 수 있습니다.
+2. TV : Top TV쇼, 인기 있는 TV쇼, 오늘 방영하는 TV쇼 정보를 볼 수 있습니다.
+3. Search : 영화나 TV 정보를 검색할 수 있습니다.
+4. Detail : 영화나 TV쇼를 선택하면 예고편 영상이나 제작사 정보, 시즌 정보를 확인할 수 있습니다.
+   <br/>
 
-### `npm test`
+## 💡 Ravenflix 에 사용된 기술 💡
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. 프론트엔드 : HTML, CSS, JS, React
+2. Node.js 라이브러리 : react계열, prop-types, axios, styled-components, styled-reset 등
+3. 배포 : Netlify
+   </br>
 
-### `npm run build`
+## 👮 저작권 및 사용권 정보 👮‍♂️
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Ravenflix는 개인의 토이 프로젝트이므로 학습용으로만 참고하시길 바랍니다.  
+  </br>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🧑🏻‍💻 Ravenflix 후기 🧑🏻‍💻
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 이 클론 프로젝트 전에 유튜브 클론코딩을 진행하면서 `SPA(Single Page Application)`방식과 상태관리를 사용해보고 싶어서 `React`를 공부하고 적용해보게 되었다.
+  `React`는 클래스형과 함수형으로 크게 나뉘는데, 이번 프로젝트에서는 클래스형으로 Container/Presenter 패턴을 사용하게되었다. Container는 컴포넌트 클래스를 정의하고 `state`를 관리한다. 반면에 Presenter는 Container에서 가져온 API나 `state`를 화면에 표시한다. 그리고 구현하면서 `props`가 부모 컴포넌트가 자식 컴포넌트에게 `state`를 보내주는 역할이라는 것을 알게되었다.
 
-### `npm run eject`
+  `React`에는 `react-router-dom` 이라는 라이브러리가 있어서 라우팅을 할 수 있는데, 이는 `SPA`를 가능하게 해줘서 매우 편리했다. 특히, Detail 페이지를 만들 때, 정보를 표시하는 부분만 클릭시 화면을 바꾸고 싶었는데 매우 유용하게 사용했다. 마지막으로 `axios`가 미리 필요한 부분을 셋팅해둘 수 있어서 편리했었다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  프로젝트를 진행하면서 `React Hook` 도 공부를 해보았지만, 아직 함수형 프로그래밍이 익숙하지 않다. 하지만, 클래스형에 비해서 `state` 선언 부분과 같이 코드가 간결해지는 점은 매우 좋았던 것 같다.
+  </br>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🥺 Ravenflix 아쉬웠던 점 🥺
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- 클래스형은 잘 사용할 수 있게 되었지만, 함수형은 아직 익숙하지 않아서 연습이 필요할 것 같다.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 이번 프로젝트에서는 클래스 컴포넌트마다 `state`를 관리했는데, 나중에 프로젝트가 커진다면 `Redux`와 같이 상태를 한번에 묶어서 관리하는 것이 필요할 것 같다고 생각했다. 왜냐면 `state`에서 문제가 생길 경우 컴포넌트마다 뒤져서 찾아야하지만, `Redux`는 하나의 js파일에서 전체 `state`를 `get/set` 방식처럼 미리 정의해두고 수정이 필요하면 이 함수를 가져다 쓰는 것으로 알고있다. 나중에 기회가 된다면 이런 상태관리도 사용해보면 좋을 것 같다고 생각했다.
